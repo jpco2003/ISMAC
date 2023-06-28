@@ -1,56 +1,21 @@
 <?php
-// Incluir el archivo conex.php
-include 'conex.php';
+// Incluir el archivo conex.php que contiene la conexión a la base de datos
+include 'php/conex.php';
 
-// Array con los nombres de las carreras
-$nombresCarreras = array(
-    "talentoHumano" => "Gestión del Talento Humano",
-    "mkDigitalRedes" => "Marketing Digital y Redes Sociales",
-    "mecatroAutomotriz" => "Mecatrónica Automotriz",
-    "automatizacionInstru" => "Automatización Instrumentación",
-    "logiAduanero" => "Gestión Logística y Procesos Aduaneros",
-    "software" => "Desarrollo de Software",
-    "mecanicaAutomotriz" => "Mecánica Automotriz",
-    "enfermeria" => "Enfermería",
-    "marketing" => "Marketing",
-    "tributacion" => "Tributación",
-    "comexExter" => "Comercio Exterior",
-    "gastronomia" => "Gastronomía",
-    "electromecanica" => "Electromecánica",
-    "turismo" => "Turismo",
-    "administracion" => "Administración",
-    "dietetica" => "Dietética",
-    "hoteleria" => "Hotelería y Turismo"
-);
+// Consulta SQL para obtener el número de tesis existentes para la categoría 'desarrolloSoftware'
+$sqlTesisCarrera = "SELECT COUNT(*) AS total FROM tesis WHERE categoria = 'desarrolloSoftware'";
+$resultadoTesisCarrera = mysqli_query($conex, $sqlTesisCarrera);
 
-// Consulta SQL para obtener el total de tesis
-$sqlTotalTesis = 'SELECT COUNT(*) AS total FROM tesis';
-$resultadoTotalTesis = mysqli_query($conexion, $sqlTotalTesis);
-$rowTotalTesis = mysqli_fetch_assoc($resultadoTotalTesis);
-$totalTesis = $rowTotalTesis['total'];
+if ($resultadoTesisCarrera) {
+  $rowTesisCarrera = mysqli_fetch_assoc($resultadoTesisCarrera);
+  $totalTesisCarrera = $rowTesisCarrera['total'];
 
-// Crear un array vacío para almacenar los datos de las carreras y sus tesis
-$carreras = array();
-
-// Llenar el array con los datos de las carreras y sus tesis
-foreach ($nombresCarreras as $categoria => $nombreCarrera) {
-    $sqlTesisCarrera = "SELECT COUNT(*) AS total FROM tesis WHERE categoria = '$categoria'";
-    $resultadoTesisCarrera = mysqli_query($conexion, $sqlTesisCarrera);
-    $rowTesisCarrera = mysqli_fetch_assoc($resultadoTesisCarrera);
-    $totalTesisCarrera = $rowTesisCarrera['total'];
-
-    $carreras[$categoria] = $totalTesisCarrera;
+  // Mostrar el número de tesis
+  echo $totalTesisCarrera;
+} else {
+  echo 'Error al obtener el número de tesis';
 }
 
-// Mostrar las carreras y sus tesis
-foreach ($nombresCarreras as $categoria => $nombreCarrera) {
-    $totalTesisCarrera = isset($carreras[$categoria]) ? $carreras[$categoria] : 0;
+// Cerrar la conexión a la base de datos
+mysqli_close($conex);
 ?>
-    <div class="col-md-4">
-        <h3><?php echo $nombreCarrera; ?></h3>
-        <p><?php echo $totalTesisCarrera; ?> tesis</p>
-    </div>
-<?php } ?>
-
-<!-- Cerrar la conexión a la base de datos -->
-<?php mysqli_close($conexion); ?>
