@@ -1,64 +1,56 @@
 <?php
+// Incluir el archivo conex.php
 include 'conex.php';
 
-// Consulta SQL para obtener los valores de tesis por carrera
-$sql = "SELECT categoria, COUNT(*) as total FROM tesis GROUP BY categoria";
-$result = mysqli_query($conex, $sql);
-
-// Crear un array para almacenar los resultados
-$tesisPorCarrera = array();
-
-// Comprobar si se obtuvieron resultados
-if (mysqli_num_rows($result) > 0) {
-    while ($row = mysqli_fetch_assoc($result)) {
-        $tesisPorCarrera[$row["categoria"]] = $row["total"];
-    }
-}
-
-// Crear un array con todas las carreras
-$carreras = array(
-    "Gestión del Talento Humano",
-    "Marketing Digital y Redes Sociales",
-    "Mecatrónica Automotriz",
-    "Automatización Instrumentación",
-    "Gestión Logística y Procesos Aduaneros",
-    "Desarrollo de Software",
-    "Mecánica Automotriz",
-    "Enfermería",
-    "Tributación",
-    "Comercio Exterior",
-    "Gastronomía"
-    // Agrega aquí todas las carreras restantes
+// Array con los nombres de las carreras
+$nombresCarreras = array(
+    "talentoHumano" => "Gestión del Talento Humano",
+    "mkDigitalRedes" => "Marketing Digital y Redes Sociales",
+    "mecatroAutomotriz" => "Mecatrónica Automotriz",
+    "automatizacionInstru" => "Automatización Instrumentación",
+    "logiAduanero" => "Gestión Logística y Procesos Aduaneros",
+    "software" => "Desarrollo de Software",
+    "mecanicaAutomotriz" => "Mecánica Automotriz",
+    "enfermeria" => "Enfermería",
+    "marketing" => "Marketing",
+    "tributacion" => "Tributación",
+    "comexExter" => "Comercio Exterior",
+    "gastronomia" => "Gastronomía",
+    "electromecanica" => "Electromecánica",
+    "turismo" => "Turismo",
+    "administracion" => "Administración",
+    "dietetica" => "Dietética",
+    "hoteleria" => "Hotelería y Turismo"
 );
 
-// Generar el código HTML
-$html = '<div class="full-box text-center" style="padding: 30px 10px;">';
-foreach ($carreras as $carrera) {
-    $total = isset($tesisPorCarrera[$carrera]) ? $tesisPorCarrera[$carrera] : 0;
-    $html .= '<article class="full-box tile">';
-    $html .= '<div class="full-box tile-title text-center text-titles text-uppercase">';
-    $html .= $carrera;
-    $html .= '</div>';
-    $html .= '<div class="full-box tile-icon text-center">';
-    $html .= '<i class="zmdi zmdi-account"></i>';
-    $html .= '</div>';
-    $html .= '<div class="full-box tile-number text-titles">';
-    $html .= '<p class="full-box">' . $total . '</p>';
-    $html .= '<small>EXISTENTES</small>';
-    $html .= '</div>';
-    $html .= '</article>';
+// Consulta SQL para obtener el total de tesis
+$sqlTotalTesis = 'SELECT COUNT(*) AS total FROM tesis';
+$resultadoTotalTesis = mysqli_query($conexion, $sqlTotalTesis);
+$rowTotalTesis = mysqli_fetch_assoc($resultadoTotalTesis);
+$totalTesis = $rowTotalTesis['total'];
+
+// Crear un array vacío para almacenar los datos de las carreras y sus tesis
+$carreras = array();
+
+// Llenar el array con los datos de las carreras y sus tesis
+foreach ($nombresCarreras as $categoria => $nombreCarrera) {
+    $sqlTesisCarrera = "SELECT COUNT(*) AS total FROM tesis WHERE categoria = '$categoria'";
+    $resultadoTesisCarrera = mysqli_query($conexion, $sqlTesisCarrera);
+    $rowTesisCarrera = mysqli_fetch_assoc($resultadoTesisCarrera);
+    $totalTesisCarrera = $rowTesisCarrera['total'];
+
+    $carreras[$categoria] = $totalTesisCarrera;
 }
-$html .= '</div>';
 
-// Cerrar la conexión a la base de datos
-mysqli_close($conex);
-
-// Cargar el contenido HTML en el archivo home.html
-$file = 'home.html';
-$current = file_get_contents($file);
-$current = preg_replace('/<!--\s*INSERTAR_CODIGO_PHP_AQUI\s*-->/', $html, $current);
-file_put_contents($file, $current);
-
-echo "El archivo home.html se actualizó correctamente con los datos de las tesis.";
-
+// Mostrar las carreras y sus tesis
+foreach ($nombresCarreras as $categoria => $nombreCarrera) {
+    $totalTesisCarrera = isset($carreras[$categoria]) ? $carreras[$categoria] : 0;
 ?>
+    <div class="col-md-4">
+        <h3><?php echo $nombreCarrera; ?></h3>
+        <p><?php echo $totalTesisCarrera; ?> tesis</p>
+    </div>
+<?php } ?>
+
+<!-- Cerrar la conexión a la base de datos -->
+<?php mysqli_close($conexion); ?>
