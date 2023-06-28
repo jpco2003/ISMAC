@@ -129,7 +129,7 @@ if (mysqli_query($conex, $sql)) {
         <script>
             Swal.fire(
               "¡Error!",
-              "ERROR AL GUARDAR",
+              "Existe Un ERROR",
               "error"
             );
         </script>
