@@ -1,0 +1,42 @@
+{% include 'site/header.html' %}
+
+<form method="get" action="/search">
+    <div>
+        <input type="search" name="word" id="word" placeholder="Busca por titulo...">
+        <button type="submit" class="btn btn-warning">Search</button>
+    </div>
+</form>
+
+    <div class="container">
+
+        <div class="row">
+
+            {% for tesis in tesis %}
+            <div class="col-md-4">
+                <br>
+                <div class="card border-primary">
+                    <img class="card-img-top" src="images/Web/logo_unap.png" width="40%" alt="">
+                    <div class="card-body">
+                        <h2 class="card-title">{{tesis[2]}}</h2>
+                        <div>
+                            
+                            <a name="" id="" class="btn btn-primary" href="/files/{{ tesis[6] }}" role="button">Visualizar</a> 
+                        
+                            <!--Quiero pasar el ID a la seccion detalles.-->
+                            <form action="/details" method="post">
+                                <input value="{{ tesis[0] }}" type="hidden" name="txtID" id="txtID">
+                                <button type="submit" class="btn btn-info">Detalles</button>
+                            </form>
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            {% endfor %}
+
+        </div> 
+    </div>
+<br>
+{% include 'site/foot.html' %}

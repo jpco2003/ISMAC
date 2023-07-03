@@ -1,0 +1,147 @@
+{% include 'admin/header.html' %}
+
+<div class="container">
+
+    <div class="row">
+        <div class="col-md-4">
+
+            <div class="card border-primary">
+                <div class="card-header">
+                  TESIS
+                </div>
+                <div class="card-body">
+
+                    <form action="/admin/tesis/save" method="post" enctype="multipart/form-data">
+
+                    <div class="form-group">
+                      <label for="txtTesis">Titulo de Tesis</label>  
+                      <input type="txt" required class="form-control" name="txtTesis" id="txtTesis" placeholder="Ingrese titulo">
+                    </div>
+
+                    <div class="form-group">
+                      <label for="txtAnio">Año</label>  
+                      <input type="txt" required class="form-control" name="txtAnio" id="txtAnio"  placeholder="Año de publicacion">
+                    </div>
+
+                    <div class="form-group">
+                      <label for="txtAutor">Autores</label>  
+                      <input type="txt" required class="form-control" name="txtAutor" id="txtAutor" placeholder="Autor">
+                    </div>
+
+                    <div class="form-group">
+                      <label for="imgAutor" class="form-label" >Imagen Titulados</label>  
+                      <input type="file" required class="form-control" name="imgAutor" id="imgAutor"  placeholder="Foto de los titulados">
+                    </div>
+
+                    <div class="form-group">
+                      <label for="txtProfesor">Profesor Guia</label>  
+                      <input type="txt" required class="form-control" name="txtProfesor" id="txtProfesor" placeholder="Profesor Guia">
+                    </div>
+
+                    <div class="form-group">
+                      <label for="imgDocente" class="form-label" >Imagen Docente</label>  
+                      <input type="file" required class="form-control" name="imgDocente" id="imgDocente"  placeholder="Foto del docente">
+                    </div>
+
+                    <div class="form-group">
+                      <label for="txtTitulo">Titulo Optado</label>  
+                      <input type="txt" required class="form-control" name="txtTitulo" id="txtTitulo"  placeholder="Titulo">
+                    </div>
+
+                    <div class="form-group">
+                      <label for="txtFacultad">Facultad</label>  
+                      <input type="txt" required class="form-control" name="txtFacultad" id="txtFacultad"  placeholder="Facultad">
+                    </div>
+
+                    <div class="form-group">
+                      <label for="txtTema">Area</label>  
+                      <input type="txt" required class="form-control" name="txtTema" id="txtTema"  placeholder="Area">
+                    </div>
+
+                    <div class="form-group">
+                      <label for="txtMail">Email</label>  
+                      <input type="txt" class="form-control" name="txtMail" id="txtMail"  placeholder="Email">
+                    </div>
+
+                    <div class="form-group">
+                      <label for="txtContacto">Contacto Telefonico</label>  
+                      <input type="txt" class="form-control" name="txtContacto" id="txtContacto"  placeholder="Numero Telefonico">
+                    </div>
+
+                    <div class="form-group">
+                      <label for="pdfTesis" class="form-label" >Archivo de la tesis</label>  
+                      <input type="file" required class="form-control" name="pdfTesis" id="pdfTesis"  placeholder="Archivo de la tesis">
+                    </div>
+
+                    <button type="submit" class="btn btn-success">Agregar</button>
+
+                </form>
+
+                </div>
+                <div class="card-footer text-muted">
+                </div>
+            </div>            
+            
+        </div>
+        <br>
+        <div class="col-md-8">
+
+            <table class="table table-primary">
+                <thead>
+                    <tr>
+                        <th>TITULO</th>
+                        <th>AUTOR</th>
+                        <th>PROFESOR GUIA</th>
+                        <th>AÑO</th>
+                        <th>ARCHIVO</th>
+                        <th>ESTADO</th>
+                        <th>ACCIONES</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                      {% for tesis in tesis %}
+                        <td>{{ tesis[2] }}</td>
+                        <td>{{ tesis[3] }}</td>
+                        <td>{{ tesis[4] }}</td>
+                        <td>{{ tesis[5] }}</td>
+                        <td>
+
+                          <a name="" id="" class="btn btn-primary" href="/files/{{ tesis[6] }}" role="button">Abrir</a>
+                          <!-- <a href="/files/{{ tesis[7] }}">{{ tesis[7] }}</a> -->
+                        </td>
+                        <td>{{ tesis[14] }}</td>
+                        <td>
+                          <form action="/admin/tesis/active" method="post">
+                            <input value="{{ tesis[0] }}" type="hidden" name="txtID" id="txtID">
+                                  <button type="submit" class="btn btn-warning">Activar</button>
+                            </form>
+
+                            <br>
+
+                            <form action="/admin/tesis/desactive" method="post">
+                              <input value="{{ tesis[0] }}" type="hidden" name="txtID" id="txtID">
+                                    <button type="submit" class="btn btn-danger">Desactivar</button>
+                              </form>
+
+                        </td>
+
+                        <td>
+
+                          <form action="/admin/tesis/delete" method="post">
+                          <input value="{{ tesis[0] }}" type="hidden" name="txtID" id="txtID">
+                                <button type="submit" class="btn btn-dark">Eliminar</button>
+                            </form>
+
+                        </td>
+
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            
+        </div>
+    </div>
+</div>
+
+{% include 'admin/foot.html' %}

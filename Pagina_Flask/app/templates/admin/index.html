@@ -1,0 +1,12 @@
+{% include 'admin/header.html' %}
+
+<div class="jumbotron">
+    <h1 class="display-3">Bienvenido {{ session['usuario'] }}</h1>
+    <hr class="my-2">
+    <!-- <p>Usuario</p> -->
+    <p class="lead">
+        <a class="btn btn-primary btn-lg" href="admin/tesis" role="button">Moderar</a>
+    </p>
+</div>
+
+{% include 'admin/foot.html' %}

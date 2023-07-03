@@ -1,0 +1,46 @@
+{% include 'site/header.html' %}
+
+<form method="get" action="/search">
+    <div>
+        <input type="search" name="word" id="word" placeholder="Busca por titulo...">
+        <button type="submit" class="btn btn-warning">Search</button>
+    </div>
+</form>
+
+    <div class="container">
+
+        <div class="row">
+            
+            {% if results %}
+
+            {% for result in results %}
+            <div class="col-md-4">
+                <br>
+                <div class="card border-primary">
+
+                    <img class="card-img-top" src="images/Web/logo_unap.png" width=40px alt="">
+                    <div class="card-body">
+                        <h2 class="card-title">{{result[2]}}</h2>
+
+                        <a name="" id="" class="btn btn-primary" href="/files/{{ result[6] }}" role="button">Visualizar</a>
+
+                        <form action="/details" method="post">
+                            <input value="{{ result[0] }}" type="hidden" name="txtID" id="txtID">
+                            <button type="submit" class="btn btn-info">Detalles</button>
+                        </form>
+                        
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+
+            {% else %}
+            <div class="alert alert-danger" role="alert">
+                <strong>{{mensaje}}</strong>
+            </div>
+            {% endif %}
+        </div> 
+
+    </div>
+<br>
+{% include 'site/foot.html' %}
