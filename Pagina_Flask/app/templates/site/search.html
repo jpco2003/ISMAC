@@ -16,17 +16,17 @@
             {% for result in results %}
             <div class="col-md-4">
                 <br>
-                <div class="card border-primary">
+                <div class="card border-dark">
 
                     <img class="card-img-top" src="images/Web/logo_unap.png" width=40px alt="">
                     <div class="card-body">
                         <h2 class="card-title">{{result[2]}}</h2>
 
-                        <a name="" id="" class="btn btn-primary" href="/files/{{ result[6] }}" role="button">Visualizar</a>
+                        <a name="" id="" class="btn btn-danger" href="/files/{{ result[6] }}" role="button">Visualizar</a>
 
                         <form action="/details" method="post">
                             <input value="{{ result[0] }}" type="hidden" name="txtID" id="txtID">
-                            <button type="submit" class="btn btn-info">Detalles</button>
+                            <button type="submit" class="btn btn-dark">Detalles</button>
                         </form>
                         
                     </div>

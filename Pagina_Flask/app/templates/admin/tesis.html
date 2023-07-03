@@ -3,7 +3,7 @@
 <div class="container">
 
     <div class="row">
-        <div class="col-md-4">
+        <div class="col-md-4 col-12 float-start">
 
             <div class="card border-lg">
                 <div class="card-header">
@@ -14,37 +14,37 @@
                     <form action="/admin/tesis/save" method="post" enctype="multipart/form-data">
 
                     <div class="form-group">
-                      <label for="txtTesis">Titulo de Tesis</label>  
+                      <label for="txtTesis">Titulo de Tesis:</label>  
                       <input type="txt" required class="form-control" name="txtTesis" id="txtTesis" placeholder="Ingrese titulo">
                     </div>
 
                     <div class="form-group">
-                      <label for="txtAnio">Año</label>  
+                      <label for="txtAnio">Año:</label>  
                       <input type="txt" required class="form-control" name="txtAnio" id="txtAnio"  placeholder="Año de publicacion">
                     </div>
 
                     <div class="form-group">
-                      <label for="txtAutor">Autores</label>  
-                      <input type="txt" required class="form-control" name="txtAutor" id="txtAutor" placeholder="Autor">
+                      <label for="txtAutor">Autor:</label>  
+                      <input type="txt" required class="form-control" name="txtAutor" id="txtAutor" placeholder="Autor/es">
                     </div>
 
                     <div class="form-group">
-                      <label for="imgAutor" class="form-label" >Imagen Titulados</label>  
+                      <label for="imgAutor" class="form-label" >Imagen Titulados:</label>  
                       <input type="file" required class="form-control" name="imgAutor" id="imgAutor"  placeholder="Foto de los titulados">
                     </div>
 
                     <div class="form-group">
-                      <label for="txtProfesor">Profesor Guia</label>  
+                      <label for="txtProfesor">Profesor Guia:</label>  
                       <input type="txt" required class="form-control" name="txtProfesor" id="txtProfesor" placeholder="Profesor Guia">
                     </div>
 
                     <div class="form-group">
-                      <label for="imgDocente" class="form-label" >Imagen Docente</label>  
+                      <label for="imgDocente" class="form-label" >Imagen Docente:</label>  
                       <input type="file" required class="form-control" name="imgDocente" id="imgDocente"  placeholder="Foto del docente">
                     </div>
 
                     <div class="form-group">
-                      <label for="txtTitulo">Titulo Optado</label>  
+                      <label for="txtTitulo">Titulo Obtenido:</label>  
                       <input type="txt" required class="form-control" name="txtTitulo" id="txtTitulo"  placeholder="Titulo">
                     </div>
 
@@ -54,9 +54,28 @@
                     </div>
 
                     <div class="form-group">
-                      <label for="txtTema">Area</label>  
-                      <input type="txt" required class="form-control" name="txtTema" id="txtTema"  placeholder="Area">
-                    </div>
+                      <div class="form-group">
+                        <label for="txtTema">Carrera Cursada:</label>  
+                        <select type="txt" required class="form-control" name="txtTema" id="txtTema">
+                          <option value="Gestión del Talento Humano">Gestión del Talento Humano</option>
+                          <option value="Marketing Digital y Redes Sociales">Marketing Digital y Redes Sociales</option>
+                          <option value="Mecatrónica Automotriz">Mecatrónica Automotriz</option>
+                          <option value="Automatización e Instrumentación">Automatización e Instrumentación</option>
+                          <option value="Gestión Logística y Procesos Aduaneros">Gestión Logística y Procesos Aduaneros</option>
+                          <option value="Desarrollo de Software">Desarrollo de Software</option>
+                          <option value="Marketing">Marketing</option>
+                          <option value="Mecánica Automotriz">Mecánica Automotriz</option>
+                          <option value="Enfermería">Enfermería</option>
+                          <option value="Tributación">Tributación</option>
+                          <option value="Comercio Exterior">Comercio Exterior</option>
+                          <option value="Gastronomía">Gastronomía</option>
+                          <option value="gastronomia">Administración</option>
+                          <option value="Administración">Electromecánica</option>
+                          <option value="Turismo">Turismo</option>
+                          <option value="Dietética">Dietética</option>
+                          <option value="Hotelería">Hotelería</option>
+                        </select>
+                      </div>
 
                     <div class="form-group">
                       <label for="txtMail">Email</label>  
@@ -84,7 +103,7 @@
             
         </div>
         <br>
-        <div class="col-md-8">
+        <div class="col-md-8 col-12 float-end">
 
             <table class="table table-dark table-transparent">
                 <thead>
