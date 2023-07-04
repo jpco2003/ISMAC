@@ -49,11 +49,6 @@
                     </div>
 
                     <div class="form-group">
-                      <label for="txtFacultad">Facultad</label>  
-                      <input type="txt" required class="form-control" name="txtFacultad" id="txtFacultad"  placeholder="Facultad">
-                    </div>
-
-                    <div class="form-group">
                       <div class="form-group">
                         <label for="txtTema">Carrera Cursada:</label>  
                         <select type="txt" required class="form-control" name="txtTema" id="txtTema">
@@ -129,7 +124,7 @@
                           <a name="" id="" class="btn btn-primary" href="/files/{{ tesis[6] }}" role="button">Abrir</a>
                           <!-- <a href="/files/{{ tesis[7] }}">{{ tesis[7] }}</a> -->
                         </td>
-                        <td>{{ tesis[14] }}</td>
+                        <td>{{ tesis[13] }}</td>
                         <td>
                           <form action="/admin/tesis/active" method="post">
                             <input value="{{ tesis[0] }}" type="hidden" name="txtID" id="txtID">

@@ -174,14 +174,13 @@ def tesisSave():
     _anio=request.form['txtAnio']
     _pdf=request.files['pdfTesis']
     _titulo=request.form['txtTitulo']
-    _facultad=request.form['txtFacultad']
     _tema=request.form['txtTema']
     _mail=request.form['txtMail']
     _contacto=request.form['txtContacto']
 
     _fotoAutor=request.files['imgAutor']
     _fotoDocente=request.files['imgDocente']
-    print(_facultad)
+
 
     tiempo = datetime.now()
     horaActual=tiempo.strftime('%Y%H%M%S')
@@ -218,8 +217,8 @@ def tesisSave():
     conexion.close()
 
 
-    sql="INSERT INTO `tesis` (`ID_T`, `ID_M`, `TITULO_T`, `AUTORES_T`, `PROFESOR_T`, `ANIO_T`, `ARCHIVO_T`,`TITULO_OPTADO_T`,`FACULTAD_T`,`TEMA_T`,`MAIL_T`,`CONTACTO_T`,`EGRESADO_T`,`DOCENTE_T`) VALUES (NULL, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s);"
-    datos=(id,_tesis,_autor,_profesor,_anio,nuevoNombre,_titulo,_facultad,_tema,_mail,_contacto,nombreFotoAutor,nombreFotoDocente)
+    sql="INSERT INTO `tesis` (`ID_T`, `ID_M`, `TITULO_T`, `AUTORES_T`, `PROFESOR_T`, `ANIO_T`, `ARCHIVO_T`,`TITULO_OPTADO_T`,`TEMA_T`,`MAIL_T`,`CONTACTO_T`,`EGRESADO_T`,`DOCENTE_T`) VALUES (NULL, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s);"
+    datos=(id,_tesis,_autor,_profesor,_anio,nuevoNombre,_titulo,_tema,_mail,_contacto,nombreFotoAutor,nombreFotoDocente)
     conexion = mysql.connect()      #Conexion.
     cursor=conexion.cursor()        #Se genera un cursor.
     cursor.execute(sql,datos)       #Cursor ejecuta el comando sql.
