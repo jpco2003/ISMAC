@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 03-07-2023 a las 23:52:49
+-- Tiempo de generación: 06-07-2023 a las 22:51:33
 -- Versión del servidor: 10.4.28-MariaDB
 -- Versión de PHP: 8.2.4
 
@@ -56,7 +56,6 @@ CREATE TABLE `tesis` (
   `ANIO_T` int(11) DEFAULT NULL,
   `ARCHIVO_T` varchar(255) DEFAULT NULL,
   `TITULO_OPTADO_T` char(100) DEFAULT NULL,
-  `FACULTAD_T` char(100) DEFAULT NULL,
   `TEMA_T` varchar(255) DEFAULT NULL,
   `MAIL_T` varchar(255) DEFAULT NULL,
   `CONTACTO_T` int(11) DEFAULT NULL,
@@ -69,8 +68,8 @@ CREATE TABLE `tesis` (
 -- Volcado de datos para la tabla `tesis`
 --
 
-INSERT INTO `tesis` (`ID_T`, `ID_M`, `TITULO_T`, `AUTORES_T`, `PROFESOR_T`, `ANIO_T`, `ARCHIVO_T`, `TITULO_OPTADO_T`, `FACULTAD_T`, `TEMA_T`, `MAIL_T`, `CONTACTO_T`, `EGRESADO_T`, `DOCENTE_T`, `ACTIVE_T`) VALUES
-(20, 1, 'Prueba Numero 1', 'Juan Pablo', 'Anita Oyasa', 2023, '2023165021_Hoja de vida (1).pdf', 'Tecnologo en Desarrollo de Software', 'Carrera Tecnologica', 'Desarrollo de Software', 'jpcarrion19@gmail.com', 994825836, '2023165021_SESION RASHELL_JUANP-21.jpg', '2023165021_1726606765.jpg', 1);
+INSERT INTO `tesis` (`ID_T`, `ID_M`, `TITULO_T`, `AUTORES_T`, `PROFESOR_T`, `ANIO_T`, `ARCHIVO_T`, `TITULO_OPTADO_T`, `TEMA_T`, `MAIL_T`, `CONTACTO_T`, `EGRESADO_T`, `DOCENTE_T`, `ACTIVE_T`) VALUES
+(23, 1, 'Pruebas', 'Juan Pablo', 'Diego Maikes', 2021, '2023181906_CertificadoTituloEnLinea.pdf', 'Tecnologo en Desarrollo de Software', 'Desarrollo de Software', 'jpcarrion19@gmail.com', 994825836, '2023181906_ejemplo 1.jpg', '2023181906_ejemplo 2.jpg', 1);
 
 --
 -- Índices para tablas volcadas
@@ -108,7 +107,7 @@ ALTER TABLE `moderadores`
 -- AUTO_INCREMENT de la tabla `tesis`
 --
 ALTER TABLE `tesis`
-  MODIFY `ID_T` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `ID_T` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- Restricciones para tablas volcadas
