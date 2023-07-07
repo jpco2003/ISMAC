@@ -51,11 +51,23 @@ def imagenes_egresados(imagen):
 def tesis():
     conexion = mysql.connect()
     cursor = conexion.cursor()
-    cursor.execute("SELECT * FROM `tesis` WHERE `ACTIVE_T`=1")
-    tesis=cursor.fetchall()
+
+    # Obtén la carrera seleccionada del formulario
+    selected_carrera = request.args.get('categoria')
+
+    # Consulta SQL para obtener las tesis filtradas por carrera
+    if selected_carrera:
+        query = "SELECT * FROM `tesis` WHERE `ACTIVE_T` = 1 AND `TEMA_T` = %s"
+        cursor.execute(query, (selected_carrera,))
+    else:
+        query = "SELECT * FROM `tesis` WHERE `ACTIVE_T` = 1"
+        cursor.execute(query)
+
+    tesis = cursor.fetchall()
     conexion.commit()
 
     return render_template('site/tesis.html', tesis=tesis)
+
 
 @app.route('/details', methods=['GET', 'POST'])
 def details():
@@ -71,18 +83,22 @@ def details():
 
 @app.route('/search', methods=['GET', 'POST'])
 def search():
+    selected_carrera = request.args.get('categoria')
+    results = []
 
-  query = request.args.get('word')
-  results = []
-  
-  conexion = mysql.connect()
-  cursor = conexion.cursor()
-  cursor.execute("SELECT * FROM `tesis` WHERE `ACTIVE_T`=1 and `TITULO_T` LIKE %s" ,('%' + query + '%'))
-  results = cursor.fetchall()         
-  cursor.close()
-  conexion.close()
-  
-  return render_template('site/search.html', query=query, results=results, mensaje="Error: '"+query+"' No Encontrado")
+    conexion = mysql.connect()
+    cursor = conexion.cursor()
+
+    if selected_carrera:
+        cursor.execute("SELECT * FROM `tesis` WHERE `ACTIVE_T`=1 AND `TEMA_T`=%s", (selected_carrera,))
+    else:
+        cursor.execute("SELECT * FROM `tesis` WHERE `ACTIVE_T`=1")
+
+    results = cursor.fetchall()
+    cursor.close()
+    conexion.close()
+
+    return render_template('site/search.html', results=results)
 
 @app.route('/admin/register')
 def register():

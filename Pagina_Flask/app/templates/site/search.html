@@ -1,9 +1,27 @@
 {% include 'site/header.html' %}
 
 <form method="get" action="/search">
-    <div>
-        <input type="search" name="word" id="word" placeholder="Busca por titulo...">
-        <button type="submit" class="btn btn-warning">Search</button>
+    <div class="d-flex align-items-center jumbotron">
+            <select type="txt" required class="form-control" name="categoria" id="categoria">
+              <option value="Gestión del Talento Humano">Gestión del Talento Humano</option>
+              <option value="Marketing Digital y Redes Sociales">Marketing Digital y Redes Sociales</option>
+              <option value="Mecatrónica Automotriz">Mecatrónica Automotriz</option>
+              <option value="Automatización e Instrumentación">Automatización e Instrumentación</option>
+              <option value="Gestión Logística y Procesos Aduaneros">Gestión Logística y Procesos Aduaneros</option>
+              <option value="Desarrollo de Software">Desarrollo de Software</option>
+              <option value="Marketing">Marketing</option>
+              <option value="Mecánica Automotriz">Mecánica Automotriz</option>
+              <option value="Enfermería">Enfermería</option>
+              <option value="Tributación">Tributación</option>
+              <option value="Comercio Exterior">Comercio Exterior</option>
+              <option value="Gastronomía">Gastronomía</option>
+              <option value="Administración">Administración</option>
+              <option value="Electromecánica">Electromecánica</option>
+              <option value="Turismo">Turismo</option>
+              <option value="Dietética">Dietética</option>
+              <option value="Hotelería">Hotelería</option>
+            </select>
+        <button type="submit" class="btn btn-success ml-2">Search</button>
     </div>
 </form>
 
