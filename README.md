@@ -52,5 +52,5 @@ Pagina web donde se van a visualizar las tesis de los alumnos egresados del Inst
 ### XAMPP
 1. Instalamos Xampp desde la pagina principal (https://www.apachefriends.org/download.html)
 2. Activamos a Apache y MySQL Y hacemos clic en Admin del mysql
-4. Vaya a crear una base de datos y nómbrela `repositorios`.
-5. Importa el archivo SQL `repositorios.sql`.
+3. Vaya a crear una base de datos y nómbrela `repositorios`.
+4. Importa el archivo SQL `repositorios.sql`.
