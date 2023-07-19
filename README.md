@@ -52,7 +52,3 @@ Pagina web donde se van a visualizar las tesis de los alumnos egresados del Inst
 ### XAMPP
 4. Vaya a crear una base de datos y nómbrela `repositorios`.
 5. Importa el archivo SQL `repositorios.sql`.
-
-### Licensia
-
-        MIT License
